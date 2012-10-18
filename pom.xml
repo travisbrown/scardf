@@ -32,16 +32,6 @@
   </properties>
   <repositories>
     <repository>
-      <id>repo1.maven.org</id>
-      <name>Maven2 Central Repository</name>
-      <url>http://repo1.maven.org/maven2</url>
-    </repository>
-    <repository>
-      <id>scala-tools.org</id>
-      <name>Scala-tools Maven2 Repository</name>
-      <url>http://scala-tools.org/repo-releases</url>
-    </repository>
-    <repository>
       <id>wp5.e-taxonomy.eu</id>
       <name>wp5.e-taxonomy.eu</name>
       <url>http://wp5.e-taxonomy.eu/cdmlib/mavenrepo/</url>
@@ -51,17 +41,22 @@
     <dependency>
       <groupId>com.hp.hpl.jena</groupId>
       <artifactId>jena</artifactId>
-      <version>2.6.3</version>
+      <version>2.6.4</version>
     </dependency>
     <dependency>
       <groupId>com.hp.hpl.jena</groupId>
       <artifactId>arq</artifactId>
-      <version>2.8.4</version>
+      <version>2.8.8</version>
     </dependency>
     <dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
-      <version>1.6</version>
+      <version>2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.joda</groupId>
+      <artifactId>joda-convert</artifactId>
+      <version>1.2</version>
     </dependency>
     <dependency>
       <groupId>org.scala-lang</groupId>
@@ -86,22 +81,14 @@
       <version>1.6.9</version>
       <scope>test</scope>
     </dependency>
-    <!-- dependency>
-      <groupId>org.scala-tools.testing</groupId>
-      <artifactId>scalacheck</artifactId>
-      <version>1.6</version>
-      <scope>test</scope>
-    </dependency --> 
   </dependencies>
   <build>
-    <sourceDirectory>src/main/scala</sourceDirectory>
-    <testSourceDirectory>src/test/scala</testSourceDirectory>
     <plugins>
       <plugin>
-        <groupId>org.scala-tools</groupId>
-        <artifactId>maven-scala-plugin</artifactId>
-        <version>2.15.2</version>
-		<executions> 
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions> 
           <execution> 
             <goals> 
               <goal>compile</goal> 
@@ -148,9 +135,9 @@
   <reporting>
     <plugins>
       <plugin>
-        <groupId>org.scala-tools</groupId>
-        <artifactId>maven-scala-plugin</artifactId>
-        <version>2.15.2</version>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <version>3.1.0</version>
         <configuration>
           <vscalaVersion>1.0</vscalaVersion>
         </configuration>
