@@ -1,16 +1,13 @@
 package org.scardf
 
 import org.joda.time.LocalDate
-import org.specs._
-import org.specs.runner.JUnit4
+import org.specs2.mutable._
 import org.joda.time.LocalDate
 import NodeConverter._
 import PeopleVoc._
 import Doe._
 
-class ConverterSpecsTest extends JUnit4(ConverterSpecs)
-
-object ConverterSpecs extends Specification {
+class ConverterTest extends SpecificationWithJUnit {
   val g = Doe.graph
   "value converters" should {
     "convert typed literal to Scala value" in {
