@@ -2,7 +2,7 @@ package org.scardf
 
 import org.specs2.mutable._
 
-import java.io.{CharArrayReader, CharArrayWriter, FileReader, StringReader}
+import java.io.{CharArrayReader, CharArrayWriter, FileReader, InputStreamReader, StringReader}
 
 class SerializerTest extends SpecificationWithJUnit {
   def parse( input: String, triples: Set[RdfTriple] ) {
@@ -13,6 +13,8 @@ class SerializerTest extends SpecificationWithJUnit {
   def parse( input: String ) { parse( input, Set[RdfTriple]() ) }
   def parse( input: String, branch: Branch ) { parse( input, branch.triples ) }
 
+  def testFileReader = new InputStreamReader(this.getClass.getResourceAsStream("test.nt"))
+
   "Base graph serialization / deserialization mechanism" should {
     val a = UriRef("a")
     val b = UriRef("b")
@@ -20,9 +22,8 @@ class SerializerTest extends SpecificationWithJUnit {
     val b1 = new Blank("b1")
     val b2 = new Blank("b2")
 
-    val testFileLocation = "src/test/scala/org/scardf/test.nt"
-    val baseG = new jena.JenaGraph ++ new Serializator(NTriple).readFrom( new FileReader( testFileLocation ) )
-    val jenaG = new jena.JenaSerializator(NTriple).readFrom( new FileReader( testFileLocation ) )
+    val baseG = new jena.JenaGraph ++ new Serializator(NTriple).readFrom(testFileReader)
+    val jenaG = new jena.JenaSerializator(NTriple).readFrom(testFileReader)
 
     val g = new jena.JenaGraph ++ Doe.graph
     val s = new Serializator( NTriple )
