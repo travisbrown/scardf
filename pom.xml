@@ -28,7 +28,7 @@
     <url>http://code.google.com/p/scardf/issues/</url>
   </issueManagement>
   <properties>
-    <scala.version>2.9.0-1</scala.version>
+    <scala.version>2.9.1</scala.version>
   </properties>
   <repositories>
     <repository>
@@ -47,13 +47,6 @@
       <url>http://wp5.e-taxonomy.eu/cdmlib/mavenrepo/</url>
     </repository>
   </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>scala-tools.org</id>
-      <name>Scala-tools Maven2 Repository</name>
-      <url>http://scala-tools.org/repo-releases</url>
-    </pluginRepository>
-  </pluginRepositories>
   <dependencies>
     <dependency>
       <groupId>com.hp.hpl.jena</groupId>
@@ -89,8 +82,8 @@
     </dependency>
     <dependency>
       <groupId>org.scala-tools.testing</groupId>
-      <artifactId>specs_2.9.0</artifactId>
-      <version>1.6.8</version>
+      <artifactId>specs_${scala.version}</artifactId>
+      <version>1.6.9</version>
       <scope>test</scope>
     </dependency>
     <!-- dependency>
