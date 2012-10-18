@@ -18,12 +18,11 @@ object NTriplesParser {
     case d if Character.isDigit(d) => d - 48
   }
 
-  val sb = new StringBuilder(256)
-
   def apply(reader: Reader) = {
     val graph = new MutableSetGraph()
     var line = 1
     var char = reader.read()
+    val sb = new StringBuilder(256)
 
     def optionalWhitespace {
       while ((char == space || char == tab) && !eof) char = reader.read

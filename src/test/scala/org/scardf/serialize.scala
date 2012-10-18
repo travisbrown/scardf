@@ -1,17 +1,14 @@
 package org.scardf
 
-import org.specs._
-import org.specs.runner.JUnit4
+import org.specs2.mutable._
+
 import java.io.{CharArrayReader, CharArrayWriter, FileReader, StringReader}
-//import org.scalacheck._
 
-class SerializerSpecsTest extends JUnit4(SerializerSpecs)
-
-object SerializerSpecs extends Specification {
+class SerializerTest extends SpecificationWithJUnit {
   def parse( input: String, triples: Set[RdfTriple] ) {
     val parsedGraph = new jena.JenaGraph ++ new Serializator(NTriple).readFrom(new StringReader(input))
     val expectedGraph = new jena.JenaGraph ++ triples
-    expectedGraph mustVerify( _ =~ parsedGraph )
+    (expectedGraph =~ parsedGraph) must beTrue
   }
   def parse( input: String ) { parse( input, Set[RdfTriple]() ) }
   def parse( input: String, branch: Branch ) { parse( input, branch.triples ) }
@@ -23,6 +20,17 @@ object SerializerSpecs extends Specification {
     val b1 = new Blank("b1")
     val b2 = new Blank("b2")
 
+    val testFileLocation = "src/test/scala/org/scardf/test.nt"
+    val baseG = new jena.JenaGraph ++ new Serializator(NTriple).readFrom( new FileReader( testFileLocation ) )
+    val jenaG = new jena.JenaSerializator(NTriple).readFrom( new FileReader( testFileLocation ) )
+
+    val g = new jena.JenaGraph ++ Doe.graph
+    val s = new Serializator( NTriple )
+    val w = new CharArrayWriter
+    s.write(g, w)
+    val r = new CharArrayReader( w.toCharArray )
+    val gout = new jena.JenaGraph ++ s.readFrom(r)
+
     "parse an empty line" in parse( "\n" )
     "parse a comment" in parse( " # a comment\n" )
     "parse an all-URIref triple" in parse( "<a> <b> <c> .\n", a-b->c )
@@ -33,19 +41,10 @@ object SerializerSpecs extends Specification {
     "parse documents with no eoln" in parse( "<a> <b> <c> .", a-b->c )
 
     "parse the official test file just like Jena's parser" in {
-      val testFileLocation = "src/test/scala/org/scardf/test.nt"
-      val baseG = new jena.JenaGraph ++ new Serializator(NTriple).readFrom( new FileReader( testFileLocation ) )
-      val jenaG = new jena.JenaSerializator(NTriple).readFrom( new FileReader( testFileLocation ) )
-      baseG mustVerify( _ =~ jenaG )
+      (baseG =~ jenaG) must beTrue
     }
     "be round-tripable" in {
-      val g = new jena.JenaGraph ++ Doe.graph
-      val s = new Serializator( NTriple )
-      val w = new CharArrayWriter
-      s.write(g, w)
-      val r = new CharArrayReader( w.toCharArray )
-      val gout = new jena.JenaGraph ++ s.readFrom(r)
-      gout mustVerify( _ =~ g )
+      (gout =~ g) must beTrue
     }
 //    "pass scalacheck" in {
 //      skip( "too stupid" )

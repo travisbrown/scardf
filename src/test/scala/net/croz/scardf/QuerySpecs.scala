@@ -1,13 +1,11 @@
 package net.croz.scardf
 
 import org.joda.time.LocalDate
-import org.specs.Specification
+import org.specs2.mutable._
 import PeopleVocabulary._
 import FamilyVocabulary._
 
-class QuerySpecsTest extends org.specs.runner.JUnit4(QuerySpecs)
-
-object QuerySpecs extends Specification with specs.RdfMatchers {
+class QueryTest extends SpecificationWithJUnit with specs.RdfMatchers {
   val data = FamilyVocabulary.model
   "Triplet factory" should {
     "make correct number of triplets from graph" in {
@@ -56,7 +54,7 @@ object QuerySpecs extends Specification with specs.RdfMatchers {
       val allHobbiesResult = Sparql select hobby where( (person, Likes, hobby) ) from data
       val hobbies = allHobbiesResult.solutions.map{ _(hobby).asRes }
       hobbies.size must beGreaterThanOrEqualTo( 2 )
-      hobbies must containAll( Set( Swimming, Science ) )
+      hobbies must contain(Swimming, Science)
     }
     "select one X as option" in {
       Sparql selectX asRes where( (X, Likes, Science) ) from data must_== Some( john )
@@ -74,11 +72,11 @@ object QuerySpecs extends Specification with specs.RdfMatchers {
           where( (person, RDF.Type, Person) )
           optional( (person, Spouse, spouse) )
       )
-      (selectPersonsWithSpouses from data).solutions == List(
-        Map( person -> anna ), 
-        Map( person -> bob ), 
-        Map( person -> jane, spouse -> john ),
-        Map( person -> john, spouse -> jane )
+      (selectPersonsWithSpouses from data).solutions must haveTheSameElementsAs(
+        Map( person -> anna ) ::
+        Map( person -> bob ) ::
+        Map( person -> jane, spouse -> john ) ::
+        Map( person -> john, spouse -> jane ) :: Nil
       )
     }
     "ask queries" in {

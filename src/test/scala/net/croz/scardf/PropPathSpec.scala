@@ -1,26 +1,23 @@
 package net.croz.scardf
 
-import org.specs.Specification
-import org.specs.runner.JUnit4
+import org.specs2.mutable._
+import org.specs2.specification.Scope
 import PeopleVocabulary._
 import FamilyVocabulary._
 
-class PropPathSpecTest extends JUnit4( PropPathSpec )
-
-object PropPathSpec extends Specification with specs.RdfMatchers {
+class PropPathTest extends SpecificationWithJUnit with specs.RdfMatchers {
   "normal prop path" should {
-    val pp = PropPath( Name, Given )
     "be constructed using dashes" in {
       val longPath = Spouse~Likes~Name~Given
       longPath.toList must_== List( Spouse, Likes, Name, Given )
     }
-    "traverse graphs using slash operator" in {
+    "traverse graphs using slash operator" in new normalProp {
       anna/pp/asString must_== "Anna"
     }
     "traverse graphs using 'of'" in {
       Spouse~Likes of john must_== Swimming
     }
-    "do equals" in {
+    "do equals" in new normalProp {
       Name~Given must_== pp
     }
   }
@@ -94,3 +91,8 @@ object PropPathSpec extends Specification with specs.RdfMatchers {
     }
   }
 }
+
+trait normalProp extends Scope {
+  val pp = PropPath( Name, Given )
+}
+

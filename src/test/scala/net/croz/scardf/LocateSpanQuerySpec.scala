@@ -1,12 +1,10 @@
 package net.croz.scardf
 
+import org.specs2.mutable._
 import PeopleVocabulary._
 import FamilyVocabulary._
 
-class LocateSpanQuerySpecTest extends org.specs.runner.JUnit4( LocateSpanQuerySpec )
-
-object LocateSpanQuerySpec extends org.specs.Specification with specs.RdfMatchers {
-
+class LocateSpanQueryTest extends SpecificationWithJUnit with specs.RdfMatchers {
   "query system" should {
     val template = Blank( Likes -> Swimming ).root
     val ptree = PredicateTree( Name~(Given, Family), Height )

@@ -1,12 +1,9 @@
 package net.croz.scardf
 
 import org.joda.time.LocalDate
-import org.specs.Specification
+import org.specs2.mutable._
 
-class NoVarSpecTest extends org.specs.runner.JUnit4( NoVarSpec )
-
-object NoVarSpec extends Specification {
-
+class NoVarTest extends SpecificationWithJUnit {
   "j" should {
     import PeopleVocabulary._
     "" in {

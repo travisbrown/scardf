@@ -28,7 +28,7 @@
     <url>http://code.google.com/p/scardf/issues/</url>
   </issueManagement>
   <properties>
-    <scala.version>2.9.1</scala.version>
+    <scala.version>2.9.2</scala.version>
   </properties>
   <repositories>
     <repository>
@@ -76,15 +76,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.scala-tools.testing</groupId>
-      <artifactId>specs_${scala.version}</artifactId>
-      <version>1.6.9</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.specs2</groupId>
       <artifactId>specs2_${scala.version}</artifactId>
       <version>1.12.1</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
