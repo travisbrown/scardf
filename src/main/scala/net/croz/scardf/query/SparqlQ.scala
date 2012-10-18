@@ -214,15 +214,15 @@ class TakeQ( exprs: Any* ) extends SparqlQ[TakeQ] {
       m add Stmt( subject, predicate, o )
   }
   
-  private def appendAll( m: Model, focus: Res, exprs: Collection[Any] ): Unit =
+  private def appendAll( m: Model, focus: Res, exprs: Iterable[Any] ): Unit =
     for ( o <- exprs ) o match {
-      case set: Collection[_] => appendAll( m, focus, set.toSeq )
+      case set: Iterable[_] => appendAll( m, focus, set.toSeq )
       case p: Prop => append( m, focus, p )
-      case pair: Pair[Prop, List[Any]] =>
-        val predicate = pair._1
+      case (p: Prop, l: List[_]) =>
+        val predicate = p
         append( m, focus, predicate )
         for ( r <- focus/predicate ) 
-          appendAll( m, r.asRes, pair._2 )
+          appendAll( m, r.asRes, l )
       case _ => throw new RuntimeException( "Unknown TAKE expression " + o )
     }
   
