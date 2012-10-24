@@ -112,7 +112,7 @@ class TypeNodeConverter[T]( typename: String, domain: UriRef => Boolean, fn: Str
   
   override def convertLiteral( l: Literal ) = l match {
     case TypedLiteral( lf, typeUri ) if domain(typeUri) => fn( lf )
-    case PlainLiteral( lf, _ ) => try { fn(lf) } catch { case e => throwException( l ) }
+    case PlainLiteral( lf, _ ) => try { fn(lf) } catch { case e: Throwable => throwException( l ) }
     case _ => throwException( l )
   }
   
