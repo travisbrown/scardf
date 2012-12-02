@@ -39,7 +39,7 @@
     <url>http://code.google.com/p/scardf/issues/</url>
   </issueManagement>
   <properties>
-    <scala.version>2.10.0-RC1</scala.version>
+    <scala.version>2.10.0-RC3</scala.version>
   </properties>
   <repositories>
     <repository>
