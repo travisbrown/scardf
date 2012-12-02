@@ -1,14 +1,21 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.scardf</groupId>
   <artifactId>scardf</artifactId>
   <name>Scardf</name>
   <version>0.6-MITH-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <description>Scala API for RDF</description>
   <url>http://code.google.com/p/scardf/</url>
   <inceptionYear>2009</inceptionYear>
+
+  <properties>
+    <scala.version>2.10.0-RC3</scala.version>
+  </properties>
+
   <developers>
     <developer>
       <id>hrvojesimic</id>
@@ -27,6 +34,7 @@
       </roles>
     </developer>
   </developers>
+
   <licenses>
     <license>
       <name>MIT License</name>
@@ -34,15 +42,20 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+
   <issueManagement>
     <system>code.google</system>
     <url>http://code.google.com/p/scardf/issues/</url>
   </issueManagement>
-  <properties>
-    <scala.version>2.10.0-RC3</scala.version>
-  </properties>
+
+  <modules>
+    <module>macros</module>
+    <module>core</module>
+    <module>legacy</module>
+  </modules>
+
   <repositories>
-    <repository>
+    <!--<repository>
       <id>oss-snapshots</id>
       <name>Sonatype Snapshots</name>
       <layout>default</layout>
@@ -50,13 +63,14 @@
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
-    </repository>
+    </repository>-->
     <repository>
       <id>wp5.e-taxonomy.eu</id>
       <name>wp5.e-taxonomy.eu</name>
       <url>http://wp5.e-taxonomy.eu/cdmlib/mavenrepo/</url>
     </repository>
   </repositories>
+
   <dependencies>
     <dependency>
       <groupId>com.hp.hpl.jena</groupId>
@@ -101,6 +115,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -151,6 +166,7 @@
       </plugin -->
     </plugins>
   </build>
+
   <reporting>
     <plugins>
       <plugin>
@@ -164,3 +180,4 @@
     </plugins>
   </reporting>
 </project>
+
