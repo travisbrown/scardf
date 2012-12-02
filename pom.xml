@@ -111,7 +111,7 @@
     <dependency>
       <groupId>org.specs2</groupId>
       <artifactId>specs2_${scala.version}</artifactId>
-      <version>1.13-SNAPSHOT</version>
+      <version>1.12.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
