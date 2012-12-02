@@ -48,22 +48,14 @@
     <url>http://code.google.com/p/scardf/issues/</url>
   </issueManagement>
 
-  <modules>
-    <module>macros</module>
+  <modules> 
     <module>core</module>
+    <module>macros</module>
+    <module>vocabularies</module>
     <module>legacy</module>
   </modules>
 
   <repositories>
-    <!--<repository>
-      <id>oss-snapshots</id>
-      <name>Sonatype Snapshots</name>
-      <layout>default</layout>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>-->
     <repository>
       <id>wp5.e-taxonomy.eu</id>
       <name>wp5.e-taxonomy.eu</name>

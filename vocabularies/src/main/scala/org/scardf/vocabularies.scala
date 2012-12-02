@@ -1,18 +1,10 @@
 package org.scardf
 
-case class Vocabulary( prefix: String ) {
-  def uriref( suffix: String ) = UriRef( prefix + suffix )
-  def \( suffix: String ) = uriref( suffix )
-  def ÷( suffix: String ) = uriref( suffix )
-  def ÷( suffixSymbol: Symbol ): UriRef = ÷( suffixSymbol.name )
-  
-  import NodeConverter._
-  def prop( suffix: String ) = GNProperty( prefix + suffix )
-  def propInt( suffix: String ) = Property[Int]( prefix + suffix )
-  def propStr( suffix: String ) = Property[String]( prefix + suffix )( asString )
+object Vocabularies {
+  def rdfs = VocabularyFactory.fromSchemaResource("/org/w3/rdf-schema.rdf") 
 }
 
-object XSD extends Vocabulary( "http://www.w3.org/2001/XMLSchema#" ) {
+/*object XSD extends Vocabulary( "http://www.w3.org/2001/XMLSchema#" ) {
   val string = XSD\"string"
   val integer = XSD\"integer"
   val int = XSD\"int"
@@ -46,7 +38,7 @@ object RDF extends Vocabulary( "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ) {
   val `object` = RDF\"object"
 }
 
-/*object RDFS extends Vocabulary( "http://www.w3.org/2000/01/rdf-schema#" ) {
+object RDFS extends Vocabulary( "http://www.w3.org/2000/01/rdf-schema#" ) {
   val Resource = RDFS\"Resource"
   val Literal = RDFS\"Literal"
   val Class = RDFS\"Class"

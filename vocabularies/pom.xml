@@ -5,8 +5,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.scardf</groupId>
-  <artifactId>macros</artifactId>
-  <name>Scardf Macros</name>
+  <artifactId>vocabularies</artifactId>
+  <name>Scardf Vocabularies</name>
   <version>0.6-MITH-SNAPSHOT</version>
 
   <parent>
@@ -18,7 +18,7 @@
   <dependencies>
     <dependency>
       <groupId>org.scardf</groupId>
-      <artifactId>core</artifactId>
+      <artifactId>macros</artifactId>
       <version>0.6-MITH-SNAPSHOT</version>
     </dependency>
   </dependencies>
